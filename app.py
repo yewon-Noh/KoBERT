@@ -154,7 +154,19 @@ def ins_ajax():
     test_ = process_data(context)
     result_ = getSentimentValue(test_)
     print(">>>>>>>>>>>>>>>>>>>>>",result_)
-    cnt = MyDao().insEmp(title, context)
+    
+    adv_yn = str(result_)
+    print(">>", type(adv_yn), adv_yn)
+    
+    if adv_yn == "[1]":
+        adv_yn = "광고"
+        print(">>", adv_yn)
+        
+    if adv_yn == "[0]":
+        adv_yn = ""
+        print(">>", adv_yn)
+        
+    cnt = MyDao().insEmp(title, context, adv_yn)
     result = "success" if cnt==1 else "fail"
     return jsonify(result = result)
 

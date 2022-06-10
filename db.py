@@ -66,12 +66,12 @@ class MyDao:
         return ret
 
     # 공지 추가 insert
-    def insEmp(self, title, context):
+    def insEmp(self, title, context, adv):
         db = pymysql.connect(host=host, user="noe", passwd="1234", db="noe", charset="utf8")
         curs = db.cursor()
         
-        sql = '''insert into noedb (title, context) values(%s,%s)'''
-        curs.execute(sql,(title, context))
+        sql = '''insert into noedb (title, context, adv) values(%s,%s, %s)'''
+        curs.execute(sql,(title, context, adv))
         db.commit()
         db.close()
 
