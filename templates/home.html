@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- include libraries(jQuery, bootstrap) -->
+  <!--css-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet">
+  <!--css-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon"  type="image/png"  href="http://example.com/myicon.png">
+  <title>N_OE</title>
+</head>
+
+<body style="padding-top: 5rem; background-color: rgb(186, 182, 225);">
+  <!--아이콘-->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <!--글쓰기 아이콘-->
+    <symbol id="add" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+    </symbol>
+  </svg>
+
+  <!-- 상단 바-->
+  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top" style="padding:0px">
+    <a class="navbar-brand"></a>
+    <a class="navbar-brand" id="homes">&nbsp; N_OE</a>
+
+    <!--화면 줄어들었을때 버튼 토글로 변환-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+          <li>
+            <a onclick="window.location.href='home_write'" class="nav-link write"
+              style="padding-bottom: 5mm; padding-top: 3mm;">
+              <!--모달창 추가-->
+              <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                <use xlink:href="#add" />
+              </svg>
+              글쓰기
+            </a>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </nav>
+  <!--Home-->
+  <main role="main" class="container" style="background-color:white;">
+
+    <div style="background-color: white;">
+      <!--카드-->
+      <br><br>
+
+      {% for noe in noelist %}
+      <form action="/home_big" method="GET">
+        <input name="num" type ="hidden" value="{{noe.num}}">
+        <input name="big_title" type ="hidden" value="{{noe.title}}">
+        <input name="big_context" type ="hidden" value="{{noe.context}}">
+
+        <div class="card" style="width: 90%; margin: auto;">
+          <a class="nav-link">
+            <div class="card-body">
+              <h6 class="card-title" style="font-weight: bold; color:#DC1046">{{noe.adv}}</h6>
+              <h5 class="card-title" style="font-weight: bold;">{{noe.title}}</h5>
+
+              <p class="card-text">{{noe.context}}</p>
+              <button class="btn btn-outline-success drdr">댓글</button>
+            </div>
+      </form>
+
+      </a>
+    </div>
+
+    <br>
+    {% endfor %}    
+
+    <br>
+    <br>
+
+  </main>
+
+  <!--js-->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script> -->
+
+
+</body>
+
+</html>
