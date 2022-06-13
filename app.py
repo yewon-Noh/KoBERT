@@ -66,7 +66,7 @@ class BERTClassifier(nn.Module):
 ## CPU
 device = torch.device("cpu")
 
-ko_model = torch.load('model7.pt', map_location=device) # input으로 저장된 디렉토리만 지정하면 완료
+ko_model = torch.load('model.pt', map_location=device) # input으로 저장된 디렉토리만 지정하면 완료
 
 class BERTDataset(Dataset):
     def __init__(self, dataset, sent_idx, label_idx, bert_tokenizer, max_len,
